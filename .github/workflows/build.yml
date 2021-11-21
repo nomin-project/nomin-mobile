@@ -1,0 +1,23 @@
+name: CI
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+jobs:
+  macos:
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-go@v2
+        with:
+          go-version: '^1.16.8'
+      - name: Get dependencies
+        run: go mod download
+      - name: Install fyne
+        run: go get fyne.io/fyne/v2
+      - name: Build and Test
+        run: fyne package -os ios
+        env:
+          DEVELOPER_DIR: /Applications/Xcode_11.4.app/Contents/Developer
+  linux:
