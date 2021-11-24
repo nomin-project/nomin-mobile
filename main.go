@@ -124,11 +124,33 @@ func setProvider(provider string, server, port *widget.Entry) {
 }
 
 var curators = []string{
-	"Michal Novotný <michal.novotny@futura.cz>",
-	"Michal Novotný 2 <michal.novotny2@futura.cz>",
+	"Naomi Beckwith <nbeckwith@guggenheim.org>",
+	"Nicolas Bourriaud <NicolasBourriaud@moco.art>",
+	"Cornelia Butler <cbutler@hammer.ucla.edu>",
+	"Melissa Chiu <melissa.chiu1@gmail.com>",
+	"RoseLee Goldberg <roselee.goldberg@nyu.edu>",
+	"Thelma Golden <TGolden@studiomuseum.org>",
+	"Hanru Hou <hanru.hou@fondazionemaxxi.it>",
+	"Candice Hopkins <chopkins@torontobiennial.org>",
+	"Bonaventure Ndikung <ndikung@gmx.de>",
+	"Fatos Ustek <mail@fatosustek.com>",
+	"KM Temporaer <info@kmtemporaer.de>",
+	"Juste Jonutyte <juste@rupert.ltz>",
+	"Hanne Mugaas <hanne@kunsthallstavanger.no>",
+	"Samuel Leuenberger <samuel@salts.ch>",
+	"Ovul Durmusoglu <durmusoglu@adbk-nuernberg.de>",
+	"Krist Gruijthuijsen <hinnik50@hotmail.com>",
 }
 
 var galleries = []string{
-	"Michal Novotný <michal.novotny@futura.cz>",
-	"Michal Novotný 2 <michal.novotny2@futura.cz>",
+	"exhibitions@whitecube.com",
+	"info@agora-gallery.com",
+	"berlin@blainsouthern.com",
+	"info@blainsouthern.com",
+	"info@bombonprojects.com",
+	"info@ermes-ermes.com",
+	"info@marfaprojects.com",
+	"info@bws.mx",
+	"office@berlinbiennale.de",
+	"info@cjch.cz",
 }

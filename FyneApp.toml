@@ -4,5 +4,5 @@ Website = "https://gajdosik.org/nomin"
   Icon = "nomin.png"
   Name = "Nomin"
   ID = "org.gajdosik.nomin"
-  Version = "1.0.0"
-  Build = 22
+  Version = "0.2.0"
+  Build = 37
