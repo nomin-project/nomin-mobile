@@ -1,10 +1,13 @@
 package main
 
 import (
+	"net/url"
+
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/dialog"
+	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/widget"
 
 	"github.com/nomin-project/nomin-mobile/sender"
@@ -36,6 +39,10 @@ func main() {
 	sendButton := widget.NewButton("Send Mail", func() {
 		verifyAndSend(from, to, subject, text, server, port, window)
 	})
+	sendButton.Importance = widget.HighImportance
+
+	aboutURL, _ := url.Parse("https://gajdosik.org/nomin")
+	aboutNomin := widget.NewHyperlink("About Nomin app.", aboutURL)
 
 	mailAbout := widget.NewRichTextWithText("Get recommended by a famous curator. Write an email recommending your artistic persona, select the sending curator and receiving gallery or other institution and just get recommended without any need for boring and slow networking!")
 	mailAbout.Wrapping = fyne.TextWrapWord
@@ -66,11 +73,18 @@ func main() {
 	)
 
 	sendLayout :=
-		container.NewVBox(
+		container.New(
+			layout.NewVBoxLayout(),
 			container.NewPadded(
 				sendAbout,
 			),
 			sendButton,
+			layout.NewSpacer(),
+			container.NewMax(
+				container.NewCenter(
+					aboutNomin,
+				),
+			),
 		)
 
 	tabs := container.NewAppTabs(
