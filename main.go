@@ -145,12 +145,13 @@ var curators = []string{
 	"Bonaventure Ndikung <ndikung@gmx.de>",
 	"Fatos Ustek <mail@fatosustek.com>",
 	"KM Temporaer <info@kmtemporaer.de>",
-	"Juste Jonutyte <juste@rupert.ltz>",
+	"Milda Batakyte <milda@rupert.lt>",
 	"Hanne Mugaas <hanne@kunsthallstavanger.no>",
 	"Samuel Leuenberger <samuel@salts.ch>",
 	"Ovul Durmusoglu <durmusoglu@adbk-nuernberg.de>",
 	"Krist Gruijthuijsen <hinnik50@hotmail.com>",
 	"Melissa Chiu <melissa.chiu1@gmail.com>",
+	"Julija Reklaite <julija@rupert.lt>",
 }
 
 var galleries = []string{
