@@ -4,6 +4,7 @@ import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/widget"
 
 	"github.com/nomin-project/nomin-mobile/sender"
@@ -33,7 +34,7 @@ func main() {
 	provider.PlaceHolder = "Choose your internet provider"
 
 	sendButton := widget.NewButton("Send Mail", func() {
-		verifyAndSend(from, to, subject, text, server, port)
+		verifyAndSend(from, to, subject, text, server, port, window)
 	})
 
 	mailAbout := widget.NewRichTextWithText("Get recommended by a famous curator. Write an email recommending your artistic persona, select the sending curator and receiving gallery or other institution and just get recommended without any need for boring and slow networking!")
@@ -46,24 +47,31 @@ func main() {
 	sendAbout.Wrapping = fyne.TextWrapWord
 
 	smtpLayout := container.NewVBox(
-		smtpAbout,
+		container.NewPadded(
+			smtpAbout,
+		),
 		provider,
 		server,
 		port,
 	)
 
 	mailLayout := container.NewVBox(
-		mailAbout,
+		container.NewPadded(
+			mailAbout,
+		),
 		from,
 		to,
 		subject,
 		text,
 	)
 
-	sendLayout := container.NewVBox(
-		sendAbout,
-		sendButton,
-	)
+	sendLayout :=
+		container.NewVBox(
+			container.NewPadded(
+				sendAbout,
+			),
+			sendButton,
+		)
 
 	tabs := container.NewAppTabs(
 		container.NewTabItem("1 Write", mailLayout),
@@ -71,20 +79,13 @@ func main() {
 		container.NewTabItem("3 Send", sendLayout),
 	)
 
-	/*window.SetContent(container.NewVBox(
-		mailLayout,
-		smtpLayout,
-		sendLayout,
-	))*/
-
 	window.SetContent(tabs)
-
-	window.ShowAndRun()
-
+	window.Show()
+	application.Run()
 }
 
-func verifyAndSend(from, to *widget.SelectEntry, subject, text, address, port *widget.Entry) {
-	sender.SendMail(
+func verifyAndSend(from, to *widget.SelectEntry, subject, text, address, port *widget.Entry, window fyne.Window) {
+	err := sender.SendMail(
 		from.Text,
 		to.Text,
 		subject.Text,
@@ -92,6 +93,16 @@ func verifyAndSend(from, to *widget.SelectEntry, subject, text, address, port *w
 		address.Text,
 		port.Text,
 	)
+
+	if err != nil {
+		w := dialog.NewInformation("Error!", "Message was not sent.\n\n1. Check your network connection.\n2. Check your SMTP configuration.\n\n"+err.Error(), window)
+		w.Resize(window.Content().Size())
+		w.Show()
+	} else {
+		w := dialog.NewInformation("Success!", "Email successfully sent!", window)
+		w.Resize(window.Content().Size())
+		w.Show()
+	}
 }
 
 var providers = []string{
@@ -127,7 +138,6 @@ var curators = []string{
 	"Naomi Beckwith <nbeckwith@guggenheim.org>",
 	"Nicolas Bourriaud <NicolasBourriaud@moco.art>",
 	"Cornelia Butler <cbutler@hammer.ucla.edu>",
-	"Melissa Chiu <melissa.chiu1@gmail.com>",
 	"RoseLee Goldberg <roselee.goldberg@nyu.edu>",
 	"Thelma Golden <TGolden@studiomuseum.org>",
 	"Hanru Hou <hanru.hou@fondazionemaxxi.it>",
@@ -140,6 +150,7 @@ var curators = []string{
 	"Samuel Leuenberger <samuel@salts.ch>",
 	"Ovul Durmusoglu <durmusoglu@adbk-nuernberg.de>",
 	"Krist Gruijthuijsen <hinnik50@hotmail.com>",
+	"Melissa Chiu <melissa.chiu1@gmail.com>",
 }
 
 var galleries = []string{
