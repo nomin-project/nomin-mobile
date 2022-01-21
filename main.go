@@ -120,23 +120,35 @@ func verifyAndSend(from, to *widget.SelectEntry, subject, text, address, port *w
 }
 
 var providers = []string{
-	"cz: UPC",
-	"cz: Vodafone",
-	"cz: T-Mobile",
+	"CZ: UPC",
+	"CZ: Vodafone",
+	"CZ: T-Mobile",
+	"DE: Vodafone",
+	"DE: T-Mobile",
+	"DE: 02 Telefonica",
 	"custom",
 }
 
 func setProvider(provider string, server, port *widget.Entry) {
 	var s, p string
 	switch provider {
-	case "cz: UPC":
+	case "CZ: UPC":
 		s = "mail.upcmail.cz"
 		p = "25"
-	case "cz: Vodafone":
+	case "CZ: Vodafone":
 		s = "smtp.vodafonemail.cz"
 		p = "25"
-	case "cz: T-Mobile":
+	case "CZ: T-Mobile":
 		s = "smtp.t-email.cz"
+		p = "25"
+	case "DE: Vodafone":
+		s = "smtp.vodafonemail.de"
+		p = "25"
+	case "DE: T-Mobile":
+		s = "smtp.t-online.de"
+		p = "25"
+	case "DE: 02 Telefonica":
+		s = "smtp.o2online.de"
 		p = "25"
 	default:
 		s = ""
